@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{doe_eci}
+US Department of Energy Office of Science,
+\newblock (2010),
+\newblock The Opportunities and Challenges of Exascale Computing.
+
+\bibitem{doe_eci_budget}
+US Department of Energy Office of Science,
+\newblock (2013),
+\newblock ASCR Budget.
+
+\bibitem{google_fac_awards}
+Google,
+\newblock (2013),
+\newblock Faculty Research Awards.
+
+\bibitem{higgs_cms}
+CMS Collaboration, S. Chatrchyan et~al.,
+\newblock Phys. Lett. B  (2012), 1207.7235.
+
+\bibitem{higgs_atlas}
+ATLAS Collaboration, G. Aad et~al.,
+\newblock Phys. Lett. B  (2012), 1207.7214.
+
+\bibitem{bergman2008exascale}
+K. Bergman et~al.,
+\newblock Defense Advanced Research Projects Agency Information Processing
+  Techniques Office (DARPA IPTO)  (2008),
+\newblock Exascale computing study: Technology challenges in achieving exascale
+  systems.
+
+\end{thebibliography}
