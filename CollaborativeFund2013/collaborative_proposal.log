@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  26 APR 2013 14:28
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  30 APR 2013 22:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -228,46 +228,50 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
-Overfull \hbox (15.1717pt too wide) in paragraph at lines 28--28
- [][] 
- []
+) [1
 
-[1
-
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 63.
- (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 73.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 73.
  [3
 
+] [4
+
 ]
-<lumitpeSingleMu-fitted2.png, id=16, 1923.185pt x 1055.945pt>
+<lumitpeSingleMu-fitted2.png, id=23, 1923.185pt x 1055.945pt>
 File: lumitpeSingleMu-fitted2.png Graphic file (type png)
 
 <use lumitpeSingleMu-fitted2.png>
-Package pdftex.def Info: lumitpeSingleMu-fitted2.png used on input line 130.
+Package pdftex.def Info: lumitpeSingleMu-fitted2.png used on input line 198.
 (pdftex.def)             Requested size: 284.52756pt x 156.20973pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-(./collaborative_proposal.bbl [4
-
-]) [5 <./lumitpeSingleMu-fitted2.png>]
+(./collaborative_proposal.bbl [5] [6 <./lumitpeSingleMu-fitted2.png>]
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no © in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no ª in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no © in font cmr12!
+Missing character: There is no Ã in font cmr12!
+Missing character: There is no © in font cmr12!
+) [7]
 (./collaborative_proposal.aux) ) 
 Here is how much of TeX's memory you used:
- 2467 strings out of 493488
- 32912 string characters out of 3141326
- 89991 words of memory out of 3000000
- 5738 multiletter control sequences out of 15000+200000
- 12096 words of font info for 47 fonts, out of 3000000 for 9000
+ 2476 strings out of 493488
+ 33034 string characters out of 3141326
+ 91016 words of memory out of 3000000
+ 5746 multiletter control sequences out of 15000+200000
+ 12265 words of font info for 48 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  37i,6n,24p,244b,233s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1
@@ -277,11 +281,12 @@ ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmr8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy8.pfb>
-Output written on collaborative_proposal.pdf (5 pages, 123195 bytes).
+sfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt12.pfb>
+Output written on collaborative_proposal.pdf (7 pages, 133302 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 61 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
