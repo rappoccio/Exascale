@@ -23,7 +23,7 @@
 \begin{document}
 
 \title{Exascale Computing at the LHC : Narrative}
-\author{Matthew Jones, Steven Ko, Salvatore Rappoccio, Lukasz Zialek}
+\author{Peter Elmer, Matthew Jones, Steven Ko,\\ Salvatore Rappoccio, Lukasz Zialek}
 
 \maketitle
 
@@ -31,21 +31,31 @@
 
 \section{Funding Strategy}
 
-Exascale computing is an enormously growth-oriented area. Even during
+This research proposal outlines the necessity to extend the computing
+capacity of the experiments at the Large Hadron Collider (LHC) in
+Geneva, Switzerland, to the exascale of high-throughput
+processing. This is an enormously challenging task, but a necessary
+one to ensure the long-term success of the LHC experiments. 
+
+Exascale computing (in this case, in high throughput)
+is an enormously growth-oriented area. Even during
 lean economic times, the US Federal Government is pledging to support
 this area of research, for instance in the Department of Energy
 Exascale Computing Initiative~\cite{doe_eci}. Indeed, the DOE Office of
-Science has this to say about the area:
+Science quotes :
 \begin{quote}
 The Exascale initiative will be significant and transformative for Department of Energy missions.
 \end{quote}
 The current level of funding for the DOE EIC and related activities is
-\$21M.~\cite{doe_eci_budget}. 
+\$21M.~\cite{doe_eci_budget}. This ``transformative'' strategy is one
+that is envisioned to continue well into the future. 
 
 In addition to governmental programs such as above, private sector
 funding sources are also available, such as the Google Faculty
 Research Awards~\cite{google_fac_awards}, which has an interest in
 exascale computing projects also. 
+
+
 
 \bigskip
 
@@ -62,7 +72,7 @@ extending LHC computing to the exascale.
 \begin{itemize}
 \item Salvatore Rappoccio has 15 years of experience programming in a
 high-energy physics environment, as well as other numerical software
-design for the private sector. He is an expert in several critical
+design for the private sector. He is an expert in critical
 areas of event reconstruction at CMS which can be optimized for
 multicore usage. 
 \item Lukasz Ziarek \ldots. 
@@ -116,8 +126,66 @@ However, with the expected end of the historic scaling of single-core
 processing capability~\cite{bergman2008exascale} ({\bf NEED MORE
   MATERIAL HERE}), it is imperative to utilize a parallel processing
 strategy in order to maintain the levels of computational speed of LHC
-data in the immediate future. 
+data in the immediate future in experiments such as CMS.  
 
+As described in detail in Ref.~\cite{cms_computing_whitepaper}, there
+are several opportunities to utilize a parallel strategy in order to
+improve CPU usage. In particular, one application that has many
+possible opportunities is in combining the decay products of hadronic
+``jets'' of particles via a nearest-neighbor clustering algorithm 
+(``jet clustering''). This is a well-established technique employed at
+many different particle physics experiments worldwide, and is
+implemented in a common software framework called 
+{\tt fastjet}~\cite{fastjet_manual}. The single-core optimization of
+the mathematical implementation of the nearest-neighbor (NN) algorithm
+chosen is outlined in Ref.~\cite{fastjet_timing}, and depends on the
+number of ``candidates'' that are input to the jet clustering
+algorithm. The single-core optimization yields $O(N^2)$ or 
+$O(N \ln{N}$ operational times. This is analogous to the
+``K-nearest neighbors algorithm''~\cite{knn_ieee} (kNN). 
+
+However, even though the single-core computational strategy is
+sufficient for many applications, there are two key components of 
+jet clustering that are still inefficient for future LHC data
+processing, which can be solved with appropriate development of a
+parallelization strategy. The first is the
+parallelization of the NN algorithm itself to make
+optimum use of the more advanced vectorization capabilities of modern
+multicore CPUs. The second is to use a ``divide and conquor'' strategy
+to reconstruct a single collision event in several disjoint sections of
+the CMS detector in parallel. 
+
+There is existing work and literature on the topic of the
+parallelization of the kNN algorithm, for instance, in
+Refs.~\cite{knn_gpu_1, knn_gpu_2, knn_gpu_3}, where improvements
+$O(100)$ in CPU performance are observed over standard
+algorithms. Since the proposed use case is
+very similar to the kNN algorithm, similar improvements to the
+processing time by parallelization strategies are expected. 
+Furthermore, 
+a critical piece of information in the jet algorithm
+is the ``area'' of each individual jet (in the NN-related
+metric). Currently, the procedure to estimate this area is to add a
+large number of infinitesimally small candidates called ``ghosts''
+that are uniformly distributed over the total area. These are fed into
+the jet clustering algorithm, and the positions of these ghosts are
+used to estimate the size. The resolution of this area is inversely
+related to the number of ghosts per unit area, so in practice many
+ghosts ($O(1000)$) are added in the neighborhoods of the jets. 
+This severely limits the computational speed with which these can be
+processed. Judicious usage of parallelization of the algorithm may be
+able to solve this problem, and drastically reduce the computational
+time needed to compute the area. 
+
+In addition to the usage of GPU and other parallelization strategies
+to estimate the jet area, it is also possible to parallelize the
+computation by dividing the event into disjoint sections, and
+computing the jet clustering in parallel over multiple cores. This
+optimization is factorized from the previous, in that it can be done
+with current single-core computational algorithms, but simply divides
+the problem into several smaller ones. There are both computational
+and physics-related challenges that need to be overcome in this
+strategy, and using a synergistic approach is absolutely critical. 
 
 \bigskip
 
