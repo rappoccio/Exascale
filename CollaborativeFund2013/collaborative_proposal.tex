@@ -49,17 +49,15 @@ The Exascale initiative will be significant and transformative for Department of
 The current level of funding for the DOE EIC and related activities is
 \$21M.~\cite{doe_eci_budget}. This ``transformative'' strategy is one
 that is envisioned to continue well into the future. 
+In addition to DOE programs, the
+National Science Foundation (NSF) has several programs to address the
+problems of high-throughput exascale computing~\cite{nsf1,nsf2}.
 
 In addition to governmental programs such as above, private sector
 funding sources are also available, such as the Google Faculty
 Research Awards~\cite{google_fac_awards}, which has an interest in
 exascale computing projects also. 
 
-
-
-\bigskip
-
-{\bf Need more bla bla bla}. 
 
 \clearpage
 
@@ -91,7 +89,7 @@ multicore usage.
 
 \clearpage
 
-\section{Introduction}
+\subsection{Introduction}
 
 With the discovery of a new boson with mass around $m=125$
 \GeV ~\cite{higgs_cms,higgs_atlas} (henceforth referred to as the
@@ -122,18 +120,57 @@ computing power to scale in order to compensate for this dramatic
 increase in CPU time with instantaneous luminosity. 
 
 
-However, with the expected end of the historic scaling of single-core
-processing capability~\cite{bergman2008exascale} ({\bf NEED MORE
-  MATERIAL HERE}), it is imperative to utilize a parallel processing
-strategy in order to maintain the levels of computational speed of LHC
-data in the immediate future in experiments such as CMS.  
 
-As described in detail in Ref.~\cite{cms_computing_whitepaper}, there
-are several opportunities to utilize a parallel strategy in order to
-improve CPU usage. In particular, one application that has many
-possible opportunities is in combining the decay products of hadronic
-``jets'' of particles via a nearest-neighbor clustering algorithm 
-(``jet clustering''). This is a well-established technique employed at
+However, with the expected end of the historic scaling of single-core
+processing capability~\cite{GAMEOVER}, it is imperative to utilize a
+parallel processing
+strategy in order to maintain the levels of computational speed of LHC
+data in the immediate future in experiments such as CMS.
+As a starting point we first note that during 
+2012, the CPU usage for offline computing activities was very 
+roughly divided up as:
+
+\begin{itemize}
+\item $\sim$40\% event simulation
+\item $\sim$20\% prompt event reconstruction (within 48 hours of datataking)
+\item $\sim$40\% mixed user analysis applications
+\end{itemize}
+
+Oftentimes,
+the codes used by CMS (and experimental HEP in general) tend to lack
+clear numerical ``kernels'' where optimization efforts can be focused. 
+Given these characteristics they are generally more properly classified as
+``high throughput computing'' (HTC) rather than ``high performance computing'' (HPC). 
+In terms of their detailed behavior on the CPU many of these codes resemble
+more general enterprise or ``cloud''
+applications~\cite{CLOUDSUITE,GOODACHEP}.
+
+However, there are several numerical algorithms where parallelization
+could be exploited more directly. One of these is the so-called ``jet
+clustering'' algorithms used at CMS. 
+At CMS, this computation is done very often by individuals accounted
+in the 40\% of CPU usage from ``mixed user analysis applications'' as
+described above. It is likely, therefore, that improvements observed
+in jet clustering will primarily benefit this portion of the CPU
+usage. We now discuss the prospects for
+utilizing parallelization in jet clustering in detail. 
+
+ 
+
+\subsection{Jet Clustering:} 
+
+
+
+
+The energetic deposits of charged and neutral hadrons in the hadronic
+calorimeter, as well as the deposits of electrons and photons in the
+electromagnetic calorimeter and the deposits of charged hadrons
+described above, (which are combined into a single ``particle flow
+candidate'' at CMS) need to be clustered to obtain the complete
+response. This is because the process inherently involves a ``shower''
+of particles that spreads in both the lateral and radial directions,
+called a ``jet''. This ``jet clustering'' is a well-established
+technique employed at
 many different particle physics experiments worldwide, and is
 implemented in a common software framework called 
 {\tt fastjet}~\cite{fastjet_manual}. The single-core optimization of
@@ -144,7 +181,7 @@ algorithm. The single-core optimization yields $O(N^2)$ or
 $O(N \ln{N}$ operational times. This is analogous to the
 ``K-nearest neighbors algorithm''~\cite{knn_ieee} (kNN). 
 
-However, even though the single-core computational strategy is
+Even though the single-core computational strategy is
 sufficient for many applications, there are two key components of 
 jet clustering that are still inefficient for future LHC data
 processing, which can be solved with appropriate development of a
@@ -186,10 +223,6 @@ with current single-core computational algorithms, but simply divides
 the problem into several smaller ones. There are both computational
 and physics-related challenges that need to be overcome in this
 strategy, and using a synergistic approach is absolutely critical. 
-
-\bigskip
-
-{\bf Need more bla bla bla}. 
 
 
 

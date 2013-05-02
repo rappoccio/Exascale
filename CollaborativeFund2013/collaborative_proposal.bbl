@@ -10,6 +10,18 @@ US Department of Energy Office of Science,
 \newblock (2013),
 \newblock ASCR Budget.
 
+\bibitem{nsf1}
+National Science Foundation,
+\newblock (2013),
+\newblock Core Techniques and Technologies for Advancing Big Data Science \&
+  Engineering (BIGDATA).
+
+\bibitem{nsf2}
+National Science Foundation,
+\newblock (2013),
+\newblock High Performance System Acquisition: Building a More Inclusive
+  Computing Environment for Science and Engineering.
+
 \bibitem{google_fac_awards}
 Google,
 \newblock (2013),
@@ -23,17 +35,20 @@ CMS Collaboration, S. Chatrchyan et~al.,
 ATLAS Collaboration, G. Aad et~al.,
 \newblock Phys. Lett. B  (2012), 1207.7214.
 
-\bibitem{bergman2008exascale}
-K. Bergman et~al.,
-\newblock Defense Advanced Research Projects Agency Information Processing
-  Techniques Office (DARPA IPTO)  (2008),
-\newblock Exascale computing study: Technology challenges in achieving exascale
-  systems.
+\bibitem{GAMEOVER}
+S.H. Fuller and E.C.o.S.G.i.C.P.N.R.C. Lynette I.~Millett,
+\newblock The Future of Computing Performance: Game Over or Next Level? (The
+  National Academies Press, 2011).
 
-\bibitem{cms_computing_whitepaper}
-Google,
-\newblock (2013),
-\newblock Faculty Research Awards.
+\bibitem{CLOUDSUITE}
+M. Ferdman et~al.,
+\newblock Proceedings of the seventeenth international conference on
+  Architectural Support for Programming Languages and Operating Systems, ASPLOS
+  '12, 2012.
+
+\bibitem{GOODACHEP}
+P. Calafiura et~al.,
+\newblock J.Phys.Conf.Ser. 396 (2012) 052072.
 
 \bibitem{fastjet_manual}
 M. Cacciari, G.P. Salam and G. Soyez,
