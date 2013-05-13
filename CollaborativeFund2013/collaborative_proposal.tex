@@ -23,7 +23,7 @@
 \begin{document}
 
 \title{Exascale Computing at the LHC : Narrative}
-\author{Peter Elmer, Matthew Jones, Steven Ko,\\ Salvatore Rappoccio, Lukasz Zialek}
+\author{Peter Elmer, Matthew Jones, Steven Ko,\\ Salvatore Rappoccio, Lukasz Ziarek}
 
 \maketitle
 
@@ -73,9 +73,18 @@ high-energy physics environment, as well as other numerical software
 design for the private sector. He is an expert in critical
 areas of event reconstruction at CMS which can be optimized for
 multicore usage. 
-\item Lukasz Ziarek \ldots. 
-\item Steven Ko \ldots. 
-\item Peter Elmer \ldots.  
+\item Lukasz Ziarek has 9 years of experience in language, compiler, and runtime design
+targeted at improving multicore performance.  He has worked on 5 compilers and 3 Java VMs. He
+is an expert at speculative and transactional computation focusing on the extraction of
+parallelism and lightweight concurrency.
+\item Steven Ko has 10 years of experience in distributed systems. His recent focus has been large-scale data processing in the cloud using MapReduce and other technologies built on top of it. He also has 5 years of experience in large-scale storage and data management in data centers.
+\item Peter Elmer is the deputy offline software coordinator of the CMS
+experiment at the LHC. He was responsible for the design and implementation
+of the data and workflow management system used by CMS, as well as its core
+event processing software and software development environment. He has
+made important contributions to the software and computing of several 
+high-energy physics experiments over the past 20 years and is currently
+focused on planning the computing R\&D needed for the next decade in CMS.
 \item Matthew Jones \ldots.  
 \end{itemize}
 
@@ -100,7 +109,7 @@ breaking. Two major questions arise. The first is the exact nature of
 the particle responsible for the electroweak symmetry breaking. The
 second is how a particle with a relatively low mass around $m=125$ \GeV\ 
 can be responsible for electroweak symmetry breaking 
-without extremely large fine tuning in nature, cancelling
+without extremely large fine tuning in nature, canceling
 the large radiative corrections to its mass. 
 
 With 25 $\fbinv$ of 7 and 8 \TeV data delivered by the LHC in
@@ -132,7 +141,7 @@ roughly divided up as:
 
 \begin{itemize}
 \item $\sim$40\% event simulation
-\item $\sim$20\% prompt event reconstruction (within 48 hours of datataking)
+\item $\sim$20\% prompt event reconstruction (within 48 hours of data-taking)
 \item $\sim$40\% mixed user analysis applications
 \end{itemize}
 
@@ -188,7 +197,7 @@ processing, which can be solved with appropriate development of a
 parallelization strategy. The first is the
 parallelization of the NN algorithm itself to make
 optimum use of the more advanced vectorization capabilities of modern
-multicore CPUs. The second is to use a ``divide and conquor'' strategy
+multicore CPUs. The second is to use a ``divide and conquer'' strategy
 to reconstruct a single collision event in several disjoint sections of
 the CMS detector in parallel. 
 
@@ -238,3 +247,8 @@ strategy, and using a synergistic approach is absolutely critical.
 %\bibliography{auto_generated}
 
 \end{document}
+
+% LocalWords:  Exascale LHC Ko Rappoccio Lukasz Zialek Ziarek EIC PIs
+% LocalWords:  Collider exascale transformative CMS multicore VMs bla
+% LocalWords:  luminosities HEP HTC HPC hadrons hadronic fastjet NN
+% LocalWords:  Ref kNN Refs knn gpu factorized workflow
