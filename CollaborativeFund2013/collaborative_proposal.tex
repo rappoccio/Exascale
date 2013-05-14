@@ -91,11 +91,6 @@ focused on planning the computing R\&D needed for the next decade in CMS.
 
 
 
-\bigskip
-
-{\bf Add your bla bla bla above. }. 
-
-
 \clearpage
 
 \subsection{Introduction}
@@ -242,6 +237,66 @@ strategy, and using a synergistic approach is absolutely critical.
       instantaneous luminosity.}
 \end{figure}
 
+
+
+\section{Full Stack Parallelization}
+
+To achieve the necessary improvements in performance required for scalability
+of jet clustering, we propose to examine parallelization opportunities across
+the entire software stack, including the use of lightweight concurrency
+extraction to mask high latency computations or I/O actions, extraction of
+parallelization from the computation itself in the form of optimistic speculation
+and specialized transform, and new methods for distributing the computation to
+maximize parallelization on each node. 
+
+\subsection{Lightweight Concurrency for Latency Masking}
+
+Many mathematical kernels contain opportunities for extracting ``micro parallelism,''
+usually on the order of tens of instructions, from their computational components. 
+Unfortunately, it is very difficult to parallelize this computation profitably as
+the overhead of thread creation, scheduling, synchronization, and migration outweigh
+the gains in parallelism. Instead of extracting explicit parallelism from such
+computations, we proposed to explore methods of lightweight asynchrony to allow for
+computation to proceed while waiting on high latency I/O operations to complete or
+the results of other computations. Since the creation of threads and associated
+schedule and synchronization costs are typically prohibitive, we will explore new
+threading models that allow for logically distinct computations to execute within
+a given construct. The PIs previous research has indicated that such schemes can profitably
+boost overall performance in the context of ML code~\cite{acml, parasites}. The salient research
+challenges in applying this strategy are as follows:  1) identifying what computation can be executed
+safely during high latency operations at compile time, 2) providing a lightweight threading runtime
+and programming model in the context of an imperative language, 
+3) specializing the approach to numeric kernels,
+and 4) building support for computation in a distributed setting.
+
+\subsection{Speculative Computation}
+
+In addition to exploring explicit parallelization of the numeric kernels in jet clustering, we
+propose to explore extraction of parallelism via speculative computation. At is core, speculative
+computation breaks apart sequential or parallel tasks into smaller tasks to be run in parallel. Once
+the speculation has completed, the runtime system validates the computation. If the computation is
+incorrect ({\em i.e.} a ``datarace'' is detected, the computation cannot be serialized, {\em etc.}), the
+incorrect computation is re-executed in a non-speculative manner.  If the rate of mis-speculation
+is low, such techniques can be leveraged to extract additional parallelism. There have been many different
+proposals, including large efforts on transactional memory~\cite{}, lock elision~\cite{}, thread level speculation and speculative
+multithreading~\cite{},
+ for integrating speculative computation into programming languages and their associated runtimes~\cite{}.
+The PIs have extensive experience with transactional memory~\cite{trans}, lightweight rollback methods~\cite{stab}, 
+leveraging memoization to reduce re-computation costs~\cite{memo1, memo2},
+and deterministic speculation~\cite{iso}. We propose to explore a specialized speculation framework leveraging different
+speculation strategies, including speculation extracted by the programmer via programming language primitives,
+library level speculation, and compiler extracted speculation.
+The salient research
+challenges in applying this strategy are as follows:  1) identification the appropriate speculation model and
+discovering speculation points at compile time, 2) providing a speculative runtime specialized for jet clustering
+and capable of realizing user, library, and compiler injected speculation, and 3) exploring new and specialized
+lightweight validation and re-execution mechanisms, including validation across multiple speculation strategies.
+
+
+
+
+\subsection{Smart Distribution}
+
 \bibliographystyle{h-elsevier}
 \bibliography{collaborative_proposal}{}
 %\bibliography{auto_generated}
@@ -251,4 +306,5 @@ strategy, and using a synergistic approach is absolutely critical.
 % LocalWords:  Exascale LHC Ko Rappoccio Lukasz Zialek Ziarek EIC PIs
 % LocalWords:  Collider exascale transformative CMS multicore VMs bla
 % LocalWords:  luminosities HEP HTC HPC hadrons hadronic fastjet NN
-% LocalWords:  Ref kNN Refs knn gpu factorized workflow
+% LocalWords:  Ref kNN Refs knn gpu factorized workflow MapReduce mis
+% LocalWords:  datarace multithreading runtimes memoization

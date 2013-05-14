@@ -8,45 +8,48 @@ Warning--empty author in doe_eci_budget
 Warning--empty author in nsf1
 Warning--empty author in nsf2
 Warning--empty author in google_fac_awards
-You've used 16 entries,
+Warning--can't use both volume and number fields in acml
+You can't pop an empty literal stack for entry acml
+while executing---line 931 of file h-elsevier.bst
+You've used 23 entries,
             1905 wiz_defined-function locations,
-            674 strings with 7261 characters,
-and the built_in function-call counts, 2460 in all, are:
-= -- 179
-> -- 107
-< -- 0
-+ -- 44
-- -- 23
-* -- 160
-:= -- 349
-add.period$ -- 16
-call.type$ -- 16
+            716 strings with 8341 characters,
+and the built_in function-call counts, 4056 in all, are:
+= -- 305
+> -- 179
+< -- 3
++ -- 70
+- -- 40
+* -- 265
+:= -- 558
+add.period$ -- 23
+call.type$ -- 23
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 152
-empty$ -- 268
-format.name$ -- 34
-if$ -- 564
+cite$ -- 29
+duplicate$ -- 241
+empty$ -- 426
+format.name$ -- 58
+if$ -- 944
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 16
-newline$ -- 73
-num.names$ -- 11
-pop$ -- 81
+int.to.str$ -- 23
+missing$ -- 23
+newline$ -- 101
+num.names$ -- 18
+pop$ -- 119
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 79
+skip$ -- 150
 stack$ -- 0
-substring$ -- 46
-swap$ -- 25
-text.length$ -- 0
+substring$ -- 139
+swap$ -- 55
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
-while$ -- 15
-width$ -- 18
-write$ -- 141
-(There were 5 warnings)
+warning$ -- 6
+while$ -- 32
+width$ -- 25
+write$ -- 197
+(There was 1 error message)
