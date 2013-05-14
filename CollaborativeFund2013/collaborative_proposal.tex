@@ -118,8 +118,8 @@ deployment and scalability of the solution.
 
 \subsection{Introduction}
 
-With the discovery of the Higgs boson with mass around 
-125 times the mass of the proton by the Large Hadron Collider (LHC)
+With the discovery of the Higgs boson 
+by the Large Hadron Collider (LHC)
 experiments ATLAS and CMS~\cite{higgs_cms,higgs_atlas}, the
 standard model (SM) of particle
 physics is now complete. This model unifies the electromagnetic force
@@ -134,21 +134,20 @@ This is referred to as ``electroweak symmetry breaking''.
 A new phase of particle physics has therefore begun. 
 The questions have shifted from the cause of electroweak symmetry
 breaking, to the study of the Higgs boson and its interactions in
-detail. This new phase of 
+detail. 
 To understand the larger picture of the fundamental forces in nature,
-it is imperative to continue the study of these questions. 
-The past excellence of the LHC experiments must therefore continue
+the past excellence of the LHC experiments must therefore continue
 unabated in the face of new technical challenges. 
 
 
 One of the major technical challenges that lies ahead is the
 continuation of the scaling of computational power year by year, known
 colloquially as ``Moore's Law''. 
-With 25 $\fbinv$ of 7 and 8 \TeV\ data delivered by the LHC in
-2011-2012, and instantaneous luminosities reaching
+To set the scale, at the CMS experiment
+with LHC collisions rates reaching
 $7\instlumiA$, the processing
 time to reconstruct each event collected by CMS was approximately 20
-seconds per event. However, as the instantaneous luminosity is
+seconds per event. However, as the collision rate is
 increased, the computational time currently scales quadratically. As
 the upgraded LHC is expected to deliver $>12\instlumiA$ in the
 upcoming run, the processing time per event is expected to reach
@@ -168,7 +167,7 @@ parallel processing
 strategy in order to maintain the levels of computational speed of LHC
 data in the immediate future in experiments such as CMS.
 As a starting point we first note that during 
-2012, the CPU usage for offline computing activities was very 
+2012, the CPU usage for CMS was very 
 roughly divided up as:
 
 \begin{itemize}
@@ -203,31 +202,27 @@ utilizing parallelization in jet clustering in detail.
 
 
 
-The energetic deposits of charged and neutral hadrons in the hadronic
-calorimeter, as well as the deposits of electrons and photons in the
-electromagnetic calorimeter and the deposits of charged hadrons
-described above, (which are combined into a single ``particle flow
-candidate'' at CMS) need to be clustered to obtain the complete
-response. This is because the process inherently involves a ``shower''
-of particles that spreads in both the lateral and radial directions,
-called a ``jet''. This ``jet clustering'' is a well-established
-technique employed at
+The energetic deposits of particles need to be clustered to obtain the
+complete response in our detector. This is because the process
+inherently involves a ``shower'' of particles called a ``jet''. This
+``jet clustering'' is a well-established technique employed at
 many different particle physics experiments worldwide, and is
 implemented in a common software framework called 
-{\tt fastjet}~\cite{fastjet_manual}. The single-core optimization of
-the mathematical implementation of the nearest-neighbor (NN) algorithm
-chosen is outlined in Ref.~\cite{fastjet_timing}, and depends on the
-number of ``candidates'' that are input to the jet clustering
-algorithm. The single-core optimization yields $O(N^2)$ or 
-$O(N \ln{N}$ operational times. This is analogous to the
+{\tt fastjet}~\cite{fastjet_manual}. 
+The mathematical problem is analogous to the
 ``K-nearest neighbors algorithm''~\cite{knn_ieee} (kNN). 
+The single-core optimization of
+the mathematical implementation of this algorithm
+is outlined in Ref.~\cite{fastjet_timing}, and the computational time
+scales as $O(N^2)$ or  $O(N \ln{N}$, where $N$ is the number
+of inputs to the algorithm.  
 
 Even though the single-core computational strategy is
 sufficient for many applications, there are two key components of 
 jet clustering that are still inefficient for future LHC data
 processing, which can be solved with appropriate development of a
 parallelization strategy. The first is the
-parallelization of the NN algorithm itself to make
+parallelization of the kNN algorithm itself to make
 optimum use of the more advanced vectorization capabilities of modern
 multicore CPUs. The second is to use a ``divide and conquer'' strategy
 to reconstruct a single collision event in several disjoint sections of
@@ -244,7 +239,7 @@ Furthermore,
 a critical piece of information in the jet algorithm
 is the ``area'' of each individual jet (in the NN-related
 metric). Currently, the procedure to estimate this area is to add a
-large number of infinitesimally small candidates called ``ghosts''
+large number of infinitesimally small inputs called ``ghosts''
 that are uniformly distributed over the total area. These are fed into
 the jet clustering algorithm, and the positions of these ghosts are
 used to estimate the size. The resolution of this area is inversely
