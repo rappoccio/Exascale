@@ -23,8 +23,10 @@
 \begin{document}
 
 \title{Exascale Computing at the LHC : Narrative}
-\author{{\bf Principle Investigators} : \\  Reneta Barneva, Peter
-  Elmer, Matthew Jones, \\ Steven Ko, Salvatore Rappoccio, Lukasz Ziarek \\ \\ {\bf Mentor} : Valentin Brimkov}
+\author{{\bf Principle Investigators} : \\  
+  Reneta Barneva, Matthew Jones, \\ 
+  Steven Ko, Salvatore Rappoccio, Lukasz Ziarek \\ \\ 
+  {\bf Mentors} : Valentin Brimkov, Peter Elmer}
 
 \maketitle
 
@@ -79,13 +81,6 @@ targeted at improving multicore performance.  He has worked on 5 compilers and 3
 is an expert at speculative and transactional computation focusing on the extraction of
 parallelism and lightweight concurrency.
 \item Steven Ko has 10 years of experience in distributed systems. His recent focus has been large-scale data processing in the cloud using MapReduce and other technologies built on top of it. He also has 5 years of experience in large-scale storage and data management in data centers.
-\item Peter Elmer is the deputy offline software coordinator of the CMS
-experiment at the LHC. He was responsible for the design and implementation
-of the data and workflow management system used by CMS, as well as its core
-event processing software and software development environment. He has
-made important contributions to the software and computing of several 
-high-energy physics experiments over the past 20 years and is currently
-focused on planning the computing R\&D needed for the next decade in CMS.
 \item Matthew Jones has more than 12 years experience in scientific software development, 
 with a particular emphasis on parallel programming.
 As the Associate Director of the Center for Computational Research at the University at Buffalo, 
@@ -98,25 +93,33 @@ scientific computing.
   computational geometry. 
 \end{itemize}
 
-There is also one senior mentor to the project to offer guidance,
+There are also two senior mentors to the project to offer guidance,
 insight and technical information. 
 \begin{itemize}
 \item Valentin Brimkov has over 20 years of experience as a
   mathematician, and has extensive expertise
   in design and analysis of algorithms, combinatorial optimization,
   and discrete geometry. 
+\item Peter Elmer is the deputy offline software coordinator of the CMS
+experiment at the LHC. He was responsible for the design and implementation
+of the data and workflow management system used by CMS, as well as its core
+event processing software and software development environment. He has
+made important contributions to the software and computing of several 
+high-energy physics experiments over the past 20 years and is currently
+focused on planning the computing R\&D needed for the next decade in CMS.
+
 \end{itemize}
 
-In addition to the PIs of the grant, the proposal includes funding for
+In addition, the proposal includes funding for
 one graduate student from the CSE department at SUNY Buffalo at 100\%
 FTE, and one graduate student from the Physics Department at SUNY
 Buffalo at 50\% FTE. They will be performing the study of this problem
 under the direction of the PIs, and will also be responsible for
 deployment and scalability of the solution. 
 
+\clearpage
 
-
-\subsection{Introduction}
+\section{Narrative}
 
 With the discovery of the Higgs boson 
 by the Large Hadron Collider (LHC)
@@ -197,7 +200,7 @@ utilizing parallelization in jet clustering in detail.
 
  
 
-\subsection{Jet Clustering:} 
+\subsection{Jet Clustering} 
 
 
 
@@ -235,30 +238,30 @@ $O(100)$ in CPU performance are observed over standard
 algorithms. Since the proposed use case is
 very similar to the kNN algorithm, similar improvements to the
 processing time by parallelization strategies are expected. 
-Furthermore, 
-a critical piece of information in the jet algorithm
-is the ``area'' of each individual jet (in the NN-related
-metric). Currently, the procedure to estimate this area is to add a
-large number of infinitesimally small inputs called ``ghosts''
-that are uniformly distributed over the total area. These are fed into
-the jet clustering algorithm, and the positions of these ghosts are
-used to estimate the size. The resolution of this area is inversely
-related to the number of ghosts per unit area, so in practice many
-ghosts ($O(1000)$) are added in the neighborhoods of the jets. 
-This severely limits the computational speed with which these can be
-processed. Judicious usage of parallelization of the algorithm may be
-able to solve this problem, and drastically reduce the computational
-time needed to compute the area. 
+%Furthermore, 
+%a critical piece of information in the jet algorithm
+%is the ``area'' of each individual jet (in the NN-related
+%metric). Currently, the procedure to estimate this area is to add a
+%large number of infinitesimally small inputs called ``ghosts''
+%that are uniformly distributed over the total area. These are fed into
+%the jet clustering algorithm, and the positions of these ghosts are
+%used to estimate the size. The resolution of this area is inversely
+%related to the number of ghosts per unit area, so in practice many
+%ghosts ($O(1000)$) are added in the neighborhoods of the jets. 
+%This severely limits the computational speed with which these can be
+%processed. Judicious usage of parallelization of the algorithm may be
+%able to solve this problem, and drastically reduce the computational
+%time needed to compute the area. 
 
-In addition to the usage of GPU and other parallelization strategies
-to estimate the jet area, it is also possible to parallelize the
-computation by dividing the event into disjoint sections, and
-computing the jet clustering in parallel over multiple cores. This
-optimization is factorized from the previous, in that it can be done
-with current single-core computational algorithms, but simply divides
-the problem into several smaller ones. There are both computational
-and physics-related challenges that need to be overcome in this
-strategy, and using a synergistic approach is absolutely critical. 
+%In addition to the usage of GPU and other parallelization strategies
+%to estimate the jet area, it is also possible to parallelize the
+%computation by dividing the event into disjoint sections, and
+%computing the jet clustering in parallel over multiple cores. This
+%optimization is factorized from the previous, in that it can be done
+%with current single-core computational algorithms, but simply divides
+%the problem into several smaller ones. There are both computational
+%and physics-related challenges that need to be overcome in this
+%strategy, and using a synergistic approach is absolutely critical. 
 
 
 
@@ -271,7 +274,7 @@ strategy, and using a synergistic approach is absolutely critical.
 
 
 
-\section{Full Stack Parallelization}
+\subsection{Full Stack Parallelization}
 
 To achieve the necessary improvements in performance required for scalability
 of jet clustering, we propose to examine parallelization opportunities across
@@ -281,7 +284,7 @@ parallelization from the computation itself in the form of optimistic speculatio
 and specialized transform, and new methods for distributing the computation to
 maximize parallelization on each node. 
 
-\subsection{Lightweight Concurrency for Latency Masking}
+\subsubsection{Lightweight Concurrency for Latency Masking}
 
 Many mathematical kernels contain opportunities for extracting ``micro parallelism,''
 usually on the order of tens of instructions, from their computational components. 
@@ -301,7 +304,7 @@ and programming model in the context of an imperative language,
 3) specializing the approach to numeric kernels,
 and 4) building support for computation in a distributed setting.
 
-\subsection{Speculative Computation}
+\subsubsection{Speculative Computation}
 
 In addition to exploring explicit parallelization of the numeric kernels in jet clustering, we
 propose to explore extraction of parallelism via speculative computation. At is core, speculative
@@ -327,7 +330,19 @@ lightweight validation and re-execution mechanisms, including validation across 
 
 
 
-\subsection{Smart Distribution}
+\subsubsection{Smart Distribution}
+
+\subsection{Summary}
+
+In summary, the problem of expanding LHC computing to the exascale is
+a difficult, but tractable one. This proposal investigates the
+possibility of applying cutting-edge computer science research to the
+real-world application of LHC data, specifically by reducing the
+computational time for $k$-nearest-neighbor-like numerical
+kernels. The investigators of this proposal have extensive experience
+in the various aspects of the problem, and the synergistic application
+of this experience is expected to attain considerable improvements in
+this avenue. 
 
 \bibliographystyle{h-elsevier}
 \bibliography{collaborative_proposal}{}
