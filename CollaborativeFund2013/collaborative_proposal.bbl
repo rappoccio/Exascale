@@ -1,111 +1,142 @@
 \begin{thebibliography}{10}
 
 \bibitem{doe_eci}
-US Department of Energy Office of Science,
-\newblock (2010),
-\newblock The Opportunities and Challenges of Exascale Computing.
+US~Department of~Energy Office~of Science.
+\newblock {The Opportunities and Challenges of Exascale Computing}.
+\newblock
+  \url{http://science.energy.gov/~/media/ascr/ascac/pdf/reports/Exascale_subcommittee_report.pdf},
+  2010.
 
 \bibitem{doe_eci_budget}
-US Department of Energy Office of Science,
-\newblock (2013),
-\newblock ASCR Budget.
+US~Department of~Energy Office~of Science.
+\newblock {Congressional Budget for ASCR}.
+\newblock
+  \url{http://science.energy.gov/~/media/budget/pdf/sc-budget-request-to-congress/fy-2013/Cong_Budget_2013_ASCR.pdf},
+  2013.
 
 \bibitem{nsf1}
-National Science Foundation,
-\newblock (2013),
-\newblock Core Techniques and Technologies for Advancing Big Data Science \&
-  Engineering (BIGDATA).
+National~Science Foundation.
+\newblock {Core Techniques and Technologies for Advancing Big Data Science \&
+  Engineering (BIGDATA)}.
+\newblock \url{http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=504767}, 2013.
 
 \bibitem{nsf2}
-National Science Foundation,
-\newblock (2013),
-\newblock High Performance System Acquisition: Building a More Inclusive
-  Computing Environment for Science and Engineering.
+National~Science Foundation.
+\newblock {High Performance System Acquisition: Building a More Inclusive
+  Computing Environment for Science and Engineering}.
+\newblock \url{http://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503148}, 2013.
 
 \bibitem{google_fac_awards}
-Google,
-\newblock (2013),
-\newblock Faculty Research Awards.
+Google.
+\newblock {Faculty Research Awards}.
+\newblock
+  \url{http://research.google.com/university/relations/research_awards.html},
+  2013.
 
 \bibitem{higgs_cms}
-CMS Collaboration, S. Chatrchyan et~al.,
-\newblock Phys. Lett. B  (2012), 1207.7235.
+Serguei Chatrchyan et~al.
+\newblock {Observation of a new boson at a mass of 125 GeV with the CMS
+  experiment at the LHC}.
+\newblock {\em Phys. Lett. B}, 2012.
 
 \bibitem{higgs_atlas}
-ATLAS Collaboration, G. Aad et~al.,
-\newblock Phys. Lett. B  (2012), 1207.7214.
+Georges Aad et~al.
+\newblock {Observation of a new particle in the search for the Standard Model
+  Higgs boson with the ATLAS detector at the LHC}.
+\newblock {\em Phys. Lett. B}, 2012.
 
 \bibitem{GAMEOVER}
-S.H. Fuller and E.C.o.S.G.i.C.P.N.R.C. Lynette I.~Millett,
-\newblock The Future of Computing Performance: Game Over or Next Level? (The
-  National Academies Press, 2011).
+Samuel~H. Fuller and Lynette~I. Millett.
+\newblock {\em The Future of Computing Performance: Game Over or Next Level?}
+\newblock The National Academies Press, 2011.
+\newblock Committee on Sustaining Growth in Computing Performance; National
+  Research Council.
 
 \bibitem{CLOUDSUITE}
-M. Ferdman et~al.,
-\newblock Proceedings of the seventeenth international conference on
-  Architectural Support for Programming Languages and Operating Systems, ASPLOS
-  '12, 2012.
+Michael Ferdman, Almutaz Adileh, Onur Kocberber, Stavros Volos, Mohammad
+  Alisafaee, Djordje Jevdjic, Cansu Kaynak, Adrian~Daniel Popescu, Anastasia
+  Ailamaki, and Babak Falsafi.
+\newblock Clearing the clouds: a study of emerging scale-out workloads on
+  modern hardware.
+\newblock In {\em Proceedings of the seventeenth international conference on
+  Architectural Support for Programming Languages and Operating Systems},
+  ASPLOS '12, 2012.
 
 \bibitem{GOODACHEP}
-P. Calafiura et~al.,
-\newblock J.Phys.Conf.Ser. 396 (2012) 052072.
+P.~Calafiura, S.~Eranian, D.~Levinthal, S.~Kama, and R.A. Vitillo.
+\newblock {GOoDA: The generic optimization data analyzer}.
+\newblock {\em J.Phys.Conf.Ser.}, 396:052072, 2012.
 
 \bibitem{fastjet_manual}
-M. Cacciari, G.P. Salam and G. Soyez,
-\newblock Eur.Phys.J. C72 (2012) 1896, 1111.6097.
-
-\bibitem{fastjet_timing}
-M. Cacciari and G.P. Salam,
-\newblock Phys.Lett. B641 (2006) 57, hep-ph/0512210.
+Matteo Cacciari, Gavin~P. Salam, and Gregory Soyez.
+\newblock {FastJet User Manual}.
+\newblock {\em Eur.Phys.J.}, C72:1896, 2012.
 
 \bibitem{knn_ieee}
-T. Cover and P. Hart,
-\newblock Information Theory, IEEE Transactions on 13 (1967) 21.
+T.~Cover and P.~Hart.
+\newblock Nearest neighbor pattern classification.
+\newblock {\em Information Theory, IEEE Transactions on}, 13(1):21--27, 1967.
+
+\bibitem{fastjet_timing}
+Matteo Cacciari and Gavin~P. Salam.
+\newblock {Dispelling the $N^{3}$ myth for the $k_t$ jet-finder}.
+\newblock {\em Phys.Lett.}, B641:57--61, 2006.
 
 \bibitem{knn_gpu_1}
-V. Garcia et~al.,
-\newblock IEEE International Conference on Image Processing (ICIP), Hong Kong,
-  China, 2010.
+Vincent Garcia, Eric Debreuve, Frank Nielsen, and Michel Barlaud.
+\newblock k-nearest neighbor search: fast {GPU}-based implementations and
+  application to high-dimensional feature matching.
+\newblock In {\em IEEE International Conference on Image Processing (ICIP)},
+  Hong Kong, China, September 2010.
 
 \bibitem{knn_gpu_2}
-V. Garcia, E. Debreuve and M. Barlaud,
-\newblock CVPR Workshop on Computer Vision on GPU, Anchorage, Alaska, USA,
-  2008.
+V.~Garcia, E.~Debreuve, and M.~Barlaud.
+\newblock Fast k nearest neighbor search using gpu.
+\newblock In {\em CVPR Workshop on Computer Vision on GPU}, Anchorage, Alaska,
+  USA, June 2008.
 
 \bibitem{knn_gpu_3}
-V. Garcia,
-\newblock Suivi d'objets d'intérêt dans une séquence d'images : des points
-  saillants aux mesures statistiques,
+Vincent Garcia.
+\newblock {\em Suivi d'objets d'intérêt dans une séquence d'images : des
+  points saillants aux mesures statistiques}.
 \newblock PhD thesis, Université de Nice - Sophia Antipolis, Sophia Antipolis,
-  France, 2008.
+  France, December 2008.
 
 \bibitem{acml}
-L. Ziarek, K. Sivaramakrishnan and S. Jagannathan,
-\newblock ACM SIGPLAN Notices Vol.~46, pp. 628--639, ACM, 2011.
+Lukasz Ziarek, KC~Sivaramakrishnan, and Suresh Jagannathan.
+\newblock Composable asynchronous events.
+\newblock In {\em ACM SIGPLAN Notices}, volume~46, pages 628--639. ACM, 2011.
 
 \bibitem{parasites}
-K. Sivaramakrishnan et~al.,
-\newblock Proceedings of the 5th ACM SIGPLAN workshop on Declarative aspects of
-  multicore programming, pp. 63--72, ACM, 2010.
+KC~Sivaramakrishnan, Lukasz Ziarek, Raghavendra Prasad, and Suresh Jagannathan.
+\newblock Lightweight asynchrony using parasitic threads.
+\newblock In {\em Proceedings of the 5th ACM SIGPLAN workshop on Declarative
+  aspects of multicore programming}, pages 63--72. ACM, 2010.
 
 \bibitem{trans}
-L. Ziarek et~al.,
-\newblock ECOOP 2008--Object-Oriented Programming  (2008) 129.
+Lukasz Ziarek, Adam Welc, Ali-Reza Adl-Tabatabai, Vijay Menon, Tatiana
+  Shpeisman, and Suresh Jagannathan.
+\newblock A uniform transactional execution environment for java.
+\newblock {\em ECOOP 2008--Object-Oriented Programming}, pages 129--154, 2008.
 
 \bibitem{stab}
-L. Ziarek and S. Jagannathan,
-\newblock Journal of Functional Programming 20 (2010) 137.
+Lukasz Ziarek and Suresh Jagannathan.
+\newblock Lightweight checkpointing for concurrent ml.
+\newblock {\em Journal of Functional Programming}, 20(02):137--173, 2010.
 
 \bibitem{memo1}
-L. Ziarek and S. Jagannathan,
-\newblock Workshop on Declarative Aspects of Multicore Programming  (2008).
+Lukasz Ziarek and Suresh Jagannathan.
+\newblock Memoizing multi-threaded transactions.
+\newblock {\em Workshop on Declarative Aspects of Multicore Programming}, 2008.
 
 \bibitem{memo2}
-L. Ziarek, K. Sivaramakrishnan and S. Jagannathan,
-\newblock ACM Sigplan Notices 44 (2009) 161.
+Lukasz Ziarek, KC~Sivaramakrishnan, and Suresh Jagannathan.
+\newblock Partial memoization of concurrency and communication.
+\newblock {\em ACM Sigplan Notices}, 44(9):161--172, 2009.
 
 \bibitem{iso}
-L. Ziarek, S. Tiwary and S. Jagannathan,
-\newblock Runtime Verification  (2012) 63.
+Lukasz Ziarek, Siddharth Tiwary, and Suresh Jagannathan.
+\newblock Isolating determinism in multi-threaded programs.
+\newblock {\em Runtime Verification}, pages 63--77, 2012.
 
 \end{thebibliography}

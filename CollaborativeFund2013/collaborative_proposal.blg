@@ -1,55 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2012)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: collaborative_proposal.aux
-The style file: h-elsevier.bst
+The style file: unsrt.bst
 Database file #1: collaborative_proposal.bib
-Warning--empty author in doe_eci
-Warning--empty author in doe_eci_budget
-Warning--empty author in nsf1
-Warning--empty author in nsf2
-Warning--empty author in google_fac_awards
 Warning--can't use both volume and number fields in acml
-You can't pop an empty literal stack for entry acml
-while executing---line 931 of file h-elsevier.bst
 You've used 23 entries,
-            1905 wiz_defined-function locations,
-            716 strings with 8341 characters,
-and the built_in function-call counts, 4056 in all, are:
-= -- 305
-> -- 179
-< -- 3
-+ -- 70
-- -- 40
-* -- 265
-:= -- 558
-add.period$ -- 23
+            1791 wiz_defined-function locations,
+            570 strings with 7559 characters,
+and the built_in function-call counts, 4923 in all, are:
+= -- 429
+> -- 232
+< -- 5
++ -- 87
+- -- 64
+* -- 278
+:= -- 787
+add.period$ -- 72
 call.type$ -- 23
-change.case$ -- 0
+change.case$ -- 21
 chr.to.int$ -- 0
-cite$ -- 29
-duplicate$ -- 241
-empty$ -- 426
-format.name$ -- 58
-if$ -- 944
+cite$ -- 24
+duplicate$ -- 230
+empty$ -- 495
+format.name$ -- 64
+if$ -- 1122
 int.to.chr$ -- 0
 int.to.str$ -- 23
-missing$ -- 23
-newline$ -- 101
-num.names$ -- 18
-pop$ -- 119
+missing$ -- 18
+newline$ -- 119
+num.names$ -- 23
+pop$ -- 87
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 150
+skip$ -- 111
 stack$ -- 0
-substring$ -- 139
-swap$ -- 55
-text.length$ -- 3
+substring$ -- 222
+swap$ -- 60
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 6
-while$ -- 32
+warning$ -- 1
+while$ -- 43
 width$ -- 25
-write$ -- 197
-(There was 1 error message)
+write$ -- 252
+(There was 1 warning)

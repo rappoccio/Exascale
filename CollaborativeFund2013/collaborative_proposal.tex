@@ -3,6 +3,7 @@
 \usepackage{amssymb} %maths
 \usepackage{amsmath} %maths
 \usepackage{graphicx}
+\usepackage{url}
 
 \newcommand{\GeV}{\ensuremath{\mathrm{GeV}}}
 \newcommand{\TeV}{\ensuremath{\mathrm{TeV}}}
@@ -60,6 +61,8 @@ In addition to governmental programs such as above, private sector
 funding sources are also available, such as the Google Faculty
 Research Awards~\cite{google_fac_awards}, which has an interest in
 exascale computing projects also. 
+
+We plan to apply for these projects in the coming year 2013-2014. 
 
 
 \clearpage
@@ -147,10 +150,10 @@ One of the major technical challenges that lies ahead is the
 continuation of the scaling of computational power year by year, known
 colloquially as ``Moore's Law''. 
 To set the scale, at the CMS experiment
-with LHC collisions rates reaching
+with the LHC collision flux (``luminosity'') reaching
 $7\instlumiA$, the processing
-time to reconstruct each event collected by CMS was approximately 20
-seconds per event. However, as the collision rate is
+time to reconstruct each collision event by CMS was approximately 20
+seconds per event. However, as the luminosity is
 increased, the computational time currently scales quadratically. As
 the upgraded LHC is expected to deliver $>12\instlumiA$ in the
 upcoming run, the processing time per event is expected to reach
@@ -160,16 +163,17 @@ in the next 15 years, the luminosity is expected to reach as high as
 $>1\instlumiB$, which would correspond (naively) to several hours of
 computational time per event! Clearly, it is necessary for the
 computing power to scale in order to compensate for this dramatic
-increase in CPU time with instantaneous luminosity. 
+increase in CPU time with increasing luminosity. 
 
 
 
 However, with the expected end of the historic scaling of single-core
 processing capability~\cite{GAMEOVER}, it is imperative to utilize a
 parallel processing
-strategy in order to maintain the levels of computational speed of LHC
-data in the immediate future in experiments such as CMS.
-As a starting point we first note that during 
+strategy in order to maintain the levels of computational speed that
+are required.
+
+As a starting point, we first note that during 
 2012, the CPU usage for CMS was very 
 roughly divided up as:
 
@@ -191,7 +195,8 @@ applications~\cite{CLOUDSUITE,GOODACHEP}.
 However, there are several numerical algorithms where parallelization
 could be exploited more directly. One of these is the so-called ``jet
 clustering'' algorithms used at CMS. 
-At CMS, this computation is done very often by individuals accounted
+At CMS, this computation is done very often by individuals rather than
+centrally, and so is accounted for
 in the 40\% of CPU usage from ``mixed user analysis applications'' as
 described above. It is likely, therefore, that improvements observed
 in jet clustering will primarily benefit this portion of the CPU
@@ -205,9 +210,10 @@ utilizing parallelization in jet clustering in detail.
 
 
 
-The energetic deposits of particles need to be clustered to obtain the
-complete response in our detector. This is because the process
-inherently involves a ``shower'' of particles called a ``jet''. This
+The energetic deposits of particles in detectors need to be clustered
+to obtain the
+complete response. This is because the process
+inherently involves a shower of particles called a ``jet''. This
 ``jet clustering'' is a well-established technique employed at
 many different particle physics experiments worldwide, and is
 implemented in a common software framework called 
@@ -215,21 +221,11 @@ implemented in a common software framework called
 The mathematical problem is analogous to the
 ``K-nearest neighbors algorithm''~\cite{knn_ieee} (kNN). 
 The single-core optimization of
-the mathematical implementation of this algorithm
-is outlined in Ref.~\cite{fastjet_timing}, and the computational time
-scales as $O(N^2)$ or  $O(N \ln{N}$, where $N$ is the number
-of inputs to the algorithm.  
-
-Even though the single-core computational strategy is
-sufficient for many applications, there are two key components of 
-jet clustering that are still inefficient for future LHC data
-processing, which can be solved with appropriate development of a
-parallelization strategy. The first is the
-parallelization of the kNN algorithm itself to make
-optimum use of the more advanced vectorization capabilities of modern
-multicore CPUs. The second is to use a ``divide and conquer'' strategy
-to reconstruct a single collision event in several disjoint sections of
-the CMS detector in parallel. 
+jet clustering
+is outlined in Ref.~\cite{fastjet_timing}. In a single core,
+the computational time scales as $O(N^2)$ or  $O(N \ln{N}$, where $N$
+is the number of inputs to the algorithm, which scales linearly with
+luminosity. 
 
 There is existing work and literature on the topic of the
 parallelization of the kNN algorithm, for instance, in
@@ -238,32 +234,9 @@ $O(100)$ in CPU performance are observed over standard
 algorithms. Since the proposed use case is
 very similar to the kNN algorithm, similar improvements to the
 processing time by parallelization strategies are expected. 
-%Furthermore, 
-%a critical piece of information in the jet algorithm
-%is the ``area'' of each individual jet (in the NN-related
-%metric). Currently, the procedure to estimate this area is to add a
-%large number of infinitesimally small inputs called ``ghosts''
-%that are uniformly distributed over the total area. These are fed into
-%the jet clustering algorithm, and the positions of these ghosts are
-%used to estimate the size. The resolution of this area is inversely
-%related to the number of ghosts per unit area, so in practice many
-%ghosts ($O(1000)$) are added in the neighborhoods of the jets. 
-%This severely limits the computational speed with which these can be
-%processed. Judicious usage of parallelization of the algorithm may be
-%able to solve this problem, and drastically reduce the computational
-%time needed to compute the area. 
 
-%In addition to the usage of GPU and other parallelization strategies
-%to estimate the jet area, it is also possible to parallelize the
-%computation by dividing the event into disjoint sections, and
-%computing the jet clustering in parallel over multiple cores. This
-%optimization is factorized from the previous, in that it can be done
-%with current single-core computational algorithms, but simply divides
-%the problem into several smaller ones. There are both computational
-%and physics-related challenges that need to be overcome in this
-%strategy, and using a synergistic approach is absolutely critical. 
-
-
+We now discuss specific strategies that can be developed in order to
+apply to this problem. 
 
 \begin{figure}[h!]
     \centering
@@ -278,11 +251,16 @@ processing time by parallelization strategies are expected.
 
 To achieve the necessary improvements in performance required for scalability
 of jet clustering, we propose to examine parallelization opportunities across
-the entire software stack, including the use of lightweight concurrency
-extraction to mask high latency computations or I/O actions, extraction of
+the entire software stack, including three specific areas : 
+(1) the use of lightweight concurrency
+extraction to mask high-latency computations or I/O actions, 
+(2) extraction of
 parallelization from the computation itself in the form of optimistic speculation
-and specialized transform, and new methods for distributing the computation to
+and specialized transform, and
+(3) new methods for distributing the computation to
 maximize parallelization on each node. 
+
+These three techniques are now discussed in turn. 
 
 \subsubsection{Lightweight Concurrency for Latency Masking}
 
@@ -295,7 +273,7 @@ computations, we proposed to explore methods of lightweight asynchrony to allow 
 computation to proceed while waiting on high latency I/O operations to complete or
 the results of other computations. Since the creation of threads and associated
 schedule and synchronization costs are typically prohibitive, we will explore new
-threading models that allow for logically distinct computations to execute within
+threading models that allow for logically-distinct computations to execute within
 a given construct. The PIs previous research has indicated that such schemes can profitably
 boost overall performance in the context of ML code~\cite{acml, parasites}. The salient research
 challenges in applying this strategy are as follows:  1) identifying what computation can be executed
@@ -337,14 +315,14 @@ lightweight validation and re-execution mechanisms, including validation across 
 In summary, the problem of expanding LHC computing to the exascale is
 a difficult, but tractable one. This proposal investigates the
 possibility of applying cutting-edge computer science research to the
-real-world application of LHC data, specifically by reducing the
-computational time for $k$-nearest-neighbor-like numerical
-kernels. The investigators of this proposal have extensive experience
-in the various aspects of the problem, and the synergistic application
-of this experience is expected to attain considerable improvements in
-this avenue. 
+real-world application of LHC data processing, specifically by
+reducing the computational time for $k$-nearest-neighbor-like
+numerical kernels via parallelization. The investigators of this
+proposal have extensive experience in the various aspects of the
+problem, and the synergistic application of this experience is
+expected to attain considerable improvements in this avenue. 
 
-\bibliographystyle{h-elsevier}
+\bibliographystyle{unsrt}
 \bibliography{collaborative_proposal}{}
 %\bibliography{auto_generated}
 
