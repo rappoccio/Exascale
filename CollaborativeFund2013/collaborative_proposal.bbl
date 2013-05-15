@@ -139,4 +139,25 @@ Lukasz Ziarek, Siddharth Tiwary, and Suresh Jagannathan.
 \newblock Isolating determinism in multi-threaded programs.
 \newblock {\em Runtime Verification}, pages 63--77, 2012.
 
+\bibitem{mapreduce-osdi}
+Jeffrey Dean and Sanjay Ghemawat.
+\newblock {MapReduce: Simplified Data Processing on Large Clusters}.
+\newblock In {\em Proceedings of the 6th USENIX Symposium on Operating Systems
+  Design and Implementation (OSDI)}, 2004.
+
+\bibitem{mapreduce-hadoop}
+{Hadoop MapReduce}.
+\newblock \url{http://hadoop.apache.org/mapreduce}.
+
+\bibitem{knn-mapreduce-0}
+Wei Lu, Yanyan Shen, Su~Chen, and Beng~Chin Ooi.
+\newblock Efficient processing of k nearest neighbor joins using mapreduce.
+\newblock {\em Proc. VLDB Endow.}, 5(10):1016--1027, June 2012.
+
+\bibitem{knn-mapreduce-1}
+Chi Zhang, Feifei Li, and Jeffrey Jestes.
+\newblock Efficient parallel knn joins for large data in mapreduce.
+\newblock In {\em Proceedings of the 15th International Conference on Extending
+  Database Technology}, EDBT '12, pages 38--49, New York, NY, USA, 2012. ACM.
+
 \end{thebibliography}

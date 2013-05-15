@@ -309,6 +309,28 @@ lightweight validation and re-execution mechanisms, including validation across 
 
 
 \subsubsection{Smart Distribution}
+In order to increase parallelism, we will explore the use of the MapReduce
+execution framework~\cite{mapreduce-osdi, mapreduce-hadoop}. MapReduce is a
+runtime system recently developed for large-scale parallel data processing. It
+enables programmers to easily deploy their applications on a cluster of
+machines. Programmers only need to write two functions, Map and Reduce, and
+submit these two functions as a job to the system. Then the MapReduce framework
+takes care of all the aspects of the execution of the job. For example, the
+framework packages and distributes the two functions over the cluster so that
+the whole cluster can be utilized to execute the job; it also takes care of
+fault-tolerance by monitoring the cluster during the execution of the job and
+redistributes the job if some machine fails.
+
+Due to this simplicity and power, it is quickly gaining popularity in industry
+for large-scale data processing. Unfortunately, scientific computing has not
+explored the use of MapReduce in depth, so it is unclear what kinds of
+scientific computing applications can be adapted to benefit from the power of
+MapReduce. We plan to explore this question in the context of our jet
+clustering. Previous research has explored implementing kNN with
+MapReduce~\cite{knn-mapreduce-0, knn-mapreduce-1}; however, these approaches all
+make various assumptions based on their scenarios, thus cannot be directly
+adapted to our context. Hence, we will investigate how to efficiently implement
+our jet clustring using MapReduce.
 
 \subsection{Summary}
 

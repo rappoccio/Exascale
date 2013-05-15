@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2012)
+This is BibTeX, Version 0.99d (TeX Live 2012/MacPorts 2012_8)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: collaborative_proposal.aux
 The style file: unsrt.bst
 Database file #1: collaborative_proposal.bib
 Warning--can't use both volume and number fields in acml
-You've used 23 entries,
+You've used 27 entries,
             1791 wiz_defined-function locations,
-            570 strings with 7559 characters,
-and the built_in function-call counts, 4923 in all, are:
-= -- 429
-> -- 232
-< -- 5
-+ -- 87
-- -- 64
-* -- 278
-:= -- 787
-add.period$ -- 72
-call.type$ -- 23
-change.case$ -- 21
+            594 strings with 8256 characters,
+and the built_in function-call counts, 5838 in all, are:
+= -- 513
+> -- 266
+< -- 6
++ -- 100
+- -- 73
+* -- 333
+:= -- 916
+add.period$ -- 84
+call.type$ -- 27
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 230
-empty$ -- 495
-format.name$ -- 64
-if$ -- 1122
+cite$ -- 28
+duplicate$ -- 275
+empty$ -- 597
+format.name$ -- 73
+if$ -- 1339
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 18
-newline$ -- 119
-num.names$ -- 23
-pop$ -- 87
+int.to.str$ -- 27
+missing$ -- 21
+newline$ -- 138
+num.names$ -- 26
+pop$ -- 104
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 111
+skip$ -- 136
 stack$ -- 0
-substring$ -- 222
-swap$ -- 60
-text.length$ -- 5
+substring$ -- 277
+swap$ -- 72
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 43
-width$ -- 25
-write$ -- 252
+while$ -- 51
+width$ -- 29
+write$ -- 294
 (There was 1 warning)
