@@ -18,8 +18,8 @@
 \newcommand{\bbbar}        {\ensuremath{\mathrm{b}\overline{\mathrm{b}}}}
 \newcommand{\qqbar}        {\ensuremath{\mathrm{q}\overline{\mathrm{q}}}}
 \newcommand{\fbinv}        {\ensuremath{\mathrm{fb}^{-1}}}
-\newcommand{\instlumiA}     {\ensuremath{\times 10^{33} \mathrm{cm}^{-2} \mathrm{s}^{-1}}}
-\newcommand{\instlumiB}     {\ensuremath{\times 10^{34} \mathrm{cm}^{-2} \mathrm{s}^{-1}}}
+\newcommand{\instlumiA}     {\ensuremath{\times 10^{33} \,\mathrm{cm}^{-2} \mathrm{s}^{-1}}}
+\newcommand{\instlumiB}     {\ensuremath{\times 10^{34} \,\mathrm{cm}^{-2} \mathrm{s}^{-1}}}
 
 \begin{document}
 
@@ -173,16 +173,6 @@ parallel processing
 strategy in order to maintain the levels of computational speed that
 are required.
 
-As a starting point, we first note that during 
-2012, the CPU usage for CMS was very 
-roughly divided up as:
-
-\begin{itemize}
-\item $\sim$40\% event simulation
-\item $\sim$20\% prompt event reconstruction (within 48 hours of data-taking)
-\item $\sim$40\% mixed user analysis applications
-\end{itemize}
-
 Oftentimes,
 the codes used by CMS (and experimental HEP in general) tend to lack
 clear numerical ``kernels'' where optimization efforts can be focused. 
@@ -194,14 +184,16 @@ applications~\cite{CLOUDSUITE,GOODACHEP}.
 
 However, there are several numerical algorithms where parallelization
 could be exploited more directly. One of these is the so-called ``jet
-clustering'' algorithms used at CMS. 
-At CMS, this computation is done very often by individuals rather than
-centrally, and so is accounted for
-in the 40\% of CPU usage from ``mixed user analysis applications'' as
-described above. It is likely, therefore, that improvements observed
-in jet clustering will primarily benefit this portion of the CPU
-usage. We now discuss the prospects for
-utilizing parallelization in jet clustering in detail. 
+clustering'' algorithms used at CMS, which we now discuss in detail. 
+%At CMS, this computation is done very often by individuals rather than
+%centrally, and so is accounted for
+%in the 40\% of CPU usage from ``mixed user analysis applications'' as
+%described above. 
+%It is likely, therefore, that improvements observed
+%in jet clustering will primarily benefit this portion of the CPU
+%usage. 
+%We now discuss the prospects for
+%utilizing parallelization in jet clustering in detail. 
 
  
 
@@ -223,7 +215,7 @@ The mathematical problem is analogous to the
 The single-core optimization of
 jet clustering
 is outlined in Ref.~\cite{fastjet_timing}. In a single core,
-the computational time scales as $O(N^2)$ or  $O(N \ln{N}$, where $N$
+the computational time scales as $O(N^2)$ or  $O(N \ln{N})$, where $N$
 is the number of inputs to the algorithm, which scales linearly with
 luminosity. 
 
@@ -235,8 +227,8 @@ algorithms. Since the proposed use case is
 very similar to the kNN algorithm, similar improvements to the
 processing time by parallelization strategies are expected. 
 
-We now discuss specific strategies that can be developed in order to
-apply to this problem. 
+We now discuss specific strategies that can be developed 
+to optimize performance in this algorithm. 
 
 \begin{figure}[h!]
     \centering
@@ -260,55 +252,68 @@ and specialized transform, and
 (3) new methods for distributing the computation to
 maximize parallelization on each node. 
 
-These three techniques are now discussed in turn. 
 
-\subsubsection{Lightweight Concurrency for Latency Masking}
+\bigskip
+\noindent
+{\bf  Lightweight Concurrency for Latency Masking}
+\bigskip
 
 Many mathematical kernels contain opportunities for extracting ``micro parallelism,''
 usually on the order of tens of instructions, from their computational components. 
 Unfortunately, it is very difficult to parallelize this computation profitably as
 the overhead of thread creation, scheduling, synchronization, and migration outweigh
 the gains in parallelism. Instead of extracting explicit parallelism from such
-computations, we proposed to explore methods of lightweight asynchrony to allow for
+computations, we propose to explore methods of lightweight asynchrony to allow for
 computation to proceed while waiting on high latency I/O operations to complete or
 the results of other computations. Since the creation of threads and associated
 schedule and synchronization costs are typically prohibitive, we will explore new
 threading models that allow for logically-distinct computations to execute within
 a given construct. The PIs previous research has indicated that such schemes can profitably
-boost overall performance in the context of ML code~\cite{acml, parasites}. The salient research
-challenges in applying this strategy are as follows:  1) identifying what computation can be executed
-safely during high latency operations at compile time, 2) providing a lightweight threading runtime
-and programming model in the context of an imperative language, 
-3) specializing the approach to numeric kernels,
-and 4) building support for computation in a distributed setting.
+boost overall performance in the context of ML code~\cite{acml, parasites}. 
+%The salient research
+%challenges in applying this strategy are as follows:  1) identifying what computation can be executed
+%safely during high latency operations at compile time, 2) providing a lightweight threading runtime
+%and programming model in the context of an imperative language, 
+%3) specializing the approach to numeric kernels,
+%and 4) building support for computation in a distributed setting.
 
-\subsubsection{Speculative Computation}
+\bigskip
+\noindent
+{\bf Speculative Computation}
+\bigskip
 
 In addition to exploring explicit parallelization of the numeric kernels in jet clustering, we
-propose to explore extraction of parallelism via speculative computation. At is core, speculative
+propose to explore extraction of parallelism via speculative computation. At its core, speculative
 computation breaks apart sequential or parallel tasks into smaller tasks to be run in parallel. Once
 the speculation has completed, the runtime system validates the computation. If the computation is
 incorrect ({\em i.e.} a ``datarace'' is detected, the computation cannot be serialized, {\em etc.}), the
 incorrect computation is re-executed in a non-speculative manner.  If the rate of mis-speculation
-is low, such techniques can be leveraged to extract additional parallelism. There have been many different
-proposals, including large efforts on transactional memory~\cite{}, lock elision~\cite{}, thread level speculation and speculative
-multithreading~\cite{},
- for integrating speculative computation into programming languages and their associated runtimes~\cite{}.
+is low, such techniques can be leveraged to extract additional
+parallelism. 
+%There have been many different
+%proposals, including large efforts on transactional memory~\cite{},
+%lock elision~\cite{}, thread level speculation and speculative
+%multithreading~\cite{},
+% for integrating speculative computation into programming languages
+% and their associated runtimes~\cite{}.
 The PIs have extensive experience with transactional memory~\cite{trans}, lightweight rollback methods~\cite{stab}, 
 leveraging memoization to reduce re-computation costs~\cite{memo1, memo2},
 and deterministic speculation~\cite{iso}. We propose to explore a specialized speculation framework leveraging different
 speculation strategies, including speculation extracted by the programmer via programming language primitives,
 library level speculation, and compiler extracted speculation.
-The salient research
-challenges in applying this strategy are as follows:  1) identification the appropriate speculation model and
-discovering speculation points at compile time, 2) providing a speculative runtime specialized for jet clustering
-and capable of realizing user, library, and compiler injected speculation, and 3) exploring new and specialized
-lightweight validation and re-execution mechanisms, including validation across multiple speculation strategies.
+%The salient research
+%challenges in applying this strategy are as follows:  1) identification the appropriate speculation model and
+%discovering speculation points at compile time, 2) providing a speculative runtime specialized for jet clustering
+%and capable of realizing user, library, and compiler injected speculation, and 3) exploring new and specialized
+%lightweight validation and re-execution mechanisms, including validation across multiple speculation strategies.
 
 
 
+\bigskip
+\noindent
+{\bf Smart Distribution}
+\bigskip
 
-\subsubsection{Smart Distribution}
 In order to increase parallelism, we will explore the use of the MapReduce
 execution framework~\cite{mapreduce-osdi, mapreduce-hadoop}. MapReduce is a
 runtime system recently developed for large-scale parallel data processing. It
@@ -322,27 +327,28 @@ fault-tolerance by monitoring the cluster during the execution of the job and
 redistributes the job if some machine fails.
 
 Due to this simplicity and power, it is quickly gaining popularity in industry
-for large-scale data processing. Unfortunately, scientific computing has not
-explored the use of MapReduce in depth, so it is unclear what kinds of
-scientific computing applications can be adapted to benefit from the power of
-MapReduce. We plan to explore this question in the context of our jet
-clustering. Previous research has explored implementing kNN with
-MapReduce~\cite{knn-mapreduce-0, knn-mapreduce-1}; however, these approaches all
-make various assumptions based on their scenarios, thus cannot be directly
-adapted to our context. Hence, we will investigate how to efficiently implement
-our jet clustring using MapReduce.
+for large-scale data processing. Many applications in scientific computing have not
+yet explored the use of MapReduce in depth, however
+previous research has explored implementing kNN with
+MapReduce~\cite{knn-mapreduce-0, knn-mapreduce-1}. We intend to explore this
+question in the context of jet clustering for the LHC.
 
 \subsection{Summary}
 
 In summary, the problem of expanding LHC computing to the exascale is
 a difficult, but tractable one. This proposal investigates the
-possibility of applying cutting-edge computer science research to the
-real-world application of LHC data processing, specifically by
-reducing the computational time for $k$-nearest-neighbor-like
-numerical kernels via parallelization. The investigators of this
+possibility of applying cutting-edge parallelization techniques such
+as lightweight concurrency extraction, speculative computation, and
+smarter distribution, to the
+real-world application of LHC data processing.
+The overall goal is to reduce the computational time for
+$k$-nearest-neighbor-like numerical kernels used for jet
+clustering. The investigators of this
 proposal have extensive experience in the various aspects of the
 problem, and the synergistic application of this experience is
-expected to attain considerable improvements in this avenue. 
+expected to attain considerable improvements in this area, which
+are absolutely critical to the success of the future LHC physics
+program. 
 
 \bibliographystyle{unsrt}
 \bibliography{collaborative_proposal}{}
